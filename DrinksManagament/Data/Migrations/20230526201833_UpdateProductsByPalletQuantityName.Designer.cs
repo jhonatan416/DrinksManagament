@@ -4,6 +4,7 @@ using DrinksManagament.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinksManagament.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230526201833_UpdateProductsByPalletQuantityName")]
+    partial class UpdateProductsByPalletQuantityName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,15 +49,15 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3902),
-                            DateModified = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3902),
+                            DateCreated = new DateTime(2023, 5, 26, 20, 18, 33, 156, DateTimeKind.Utc).AddTicks(5543),
+                            DateModified = new DateTime(2023, 5, 26, 20, 18, 33, 156, DateTimeKind.Utc).AddTicks(5544),
                             PositionCount = 50
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3903),
-                            DateModified = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3903),
+                            DateCreated = new DateTime(2023, 5, 26, 20, 18, 33, 156, DateTimeKind.Utc).AddTicks(5545),
+                            DateModified = new DateTime(2023, 5, 26, 20, 18, 33, 156, DateTimeKind.Utc).AddTicks(5545),
                             PositionCount = 20
                         });
                 });
@@ -100,8 +102,8 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3683),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3693),
+                            DateCreated = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5291),
+                            DateModified = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5304),
                             Description = "Coca Cola 350 ML",
                             Name = "Coca Cola",
                             PriceForOne = 1500m,
@@ -145,8 +147,8 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3940),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3941),
+                            DateCreated = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5623),
+                            DateModified = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5624),
                             PalletId = 1,
                             ProductId = 1,
                             Quantity = 15
@@ -179,17 +181,114 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3852),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3852),
+                            DateCreated = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5481),
+                            DateModified = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5481),
                             Name = "Gaseosas"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3853),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3853),
+                            DateCreated = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5482),
+                            DateModified = new DateTime(2023, 5, 26, 15, 18, 33, 156, DateTimeKind.Local).AddTicks(5483),
                             Name = "Refrescos"
                         });
+                });
+
+            modelBuilder.Entity("DrinksManagament.Models.PalletVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("PositionCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PalletVM");
+                });
+
+            modelBuilder.Entity("DrinksManagament.Models.ProductsByPalletVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("PalletId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductsByPalletVM");
+                });
+
+            modelBuilder.Entity("DrinksManagament.Models.ProductTypeVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductTypeVM");
+                });
+
+            modelBuilder.Entity("DrinksManagament.Models.ProductVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PalletId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PriceForOne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PriceForStock")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsByPalletId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PalletId");
+
+                    b.HasIndex("ProductTypeId");
+
+                    b.HasIndex("ProductsByPalletId");
+
+                    b.ToTable("ProductVM");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -222,14 +321,14 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = "d47e33eb-7f01-455b-9f83-fd5cdccc7884",
-                            ConcurrencyStamp = "71353f2d-e162-4784-a723-60c2267ccff4",
+                            ConcurrencyStamp = "ba25dae0-1fcb-43d1-bd5d-3fe339cb8644",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "a78e54etb-7f01-455b-9f83-fd8cdccc8549",
-                            ConcurrencyStamp = "3d75ebdd-f9cb-4811-92cc-c168fa704b45",
+                            ConcurrencyStamp = "37555715-9d35-4d2d-8043-b13a3852ae44",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -329,15 +428,15 @@ namespace DrinksManagament.Data.Migrations
                         {
                             Id = "d47e33eb-7f01-455b-9f76-fd6cdccc1284",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "beb7b855-37f2-47c7-b0a4-b73787489c93",
+                            ConcurrencyStamp = "7c64b5f1-e050-486e-a9f6-88a772e47acc",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG4aFMrlNP7ovE6x/m9/fAEORtAB4iw7/WGKNzCIeKw8xPiy1rmy6e+pV8y1fT8BqA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ2zW3Gmf/gDRZiOrr2UOwBcPmz9rg/2Cq69wYy1UtOOydokBKJ/S4PX7Tiz8+FhJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "62cf74a2-4640-4d3d-b13f-6aaeb1456225",
+                            SecurityStamp = "4f2a8533-7188-4735-9843-4f9385b99b27",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -345,15 +444,15 @@ namespace DrinksManagament.Data.Migrations
                         {
                             Id = "d47e33eb-7f01-455b-9f76-fd6cdccc8897",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "065c8f64-569c-4fbc-a583-46e12bb646ed",
+                            ConcurrencyStamp = "72738d26-456c-47b2-9e34-66511b31028d",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEsF/UyJdRMMlRbCmU0OXOFhxDewprtvv2AfmePrtHRlqP9h9Rt9CeoGAzoQyf3NgA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGymcWHyfb3ygMf6FWiRwrtB30gAZV2iZKaPMvRo6051Zy1r7BPR28OojaRpuXJpQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6eb3600e-8ebd-462a-ba36-285a14904163",
+                            SecurityStamp = "99970ac6-9361-4572-b681-aa47e4a04ee3",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -484,6 +583,33 @@ namespace DrinksManagament.Data.Migrations
                     b.Navigation("Pallet");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DrinksManagament.Models.ProductVM", b =>
+                {
+                    b.HasOne("DrinksManagament.Models.PalletVM", "Pallet")
+                        .WithMany()
+                        .HasForeignKey("PalletId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DrinksManagament.Models.ProductTypeVM", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DrinksManagament.Models.ProductsByPalletVM", "ProductsByPallet")
+                        .WithMany()
+                        .HasForeignKey("ProductsByPalletId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pallet");
+
+                    b.Navigation("ProductType");
+
+                    b.Navigation("ProductsByPallet");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

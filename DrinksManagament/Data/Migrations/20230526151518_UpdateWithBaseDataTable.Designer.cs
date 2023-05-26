@@ -4,6 +4,7 @@ using DrinksManagament.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinksManagament.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230526151518_UpdateWithBaseDataTable")]
+    partial class UpdateWithBaseDataTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,22 +44,6 @@ namespace DrinksManagament.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pallets");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3902),
-                            DateModified = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3902),
-                            PositionCount = 50
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateCreated = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3903),
-                            DateModified = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3903),
-                            PositionCount = 20
-                        });
                 });
 
             modelBuilder.Entity("DrinksManagament.Data.Product", b =>
@@ -95,19 +81,6 @@ namespace DrinksManagament.Data.Migrations
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3683),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3693),
-                            Description = "Coca Cola 350 ML",
-                            Name = "Coca Cola",
-                            PriceForOne = 1500m,
-                            PriceForStock = 1200m,
-                            ProductTypeId = 1
-                        });
                 });
 
             modelBuilder.Entity("DrinksManagament.Data.ProductsByPallet", b =>
@@ -130,7 +103,7 @@ namespace DrinksManagament.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("Quatity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -140,17 +113,6 @@ namespace DrinksManagament.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductsByPallets");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3940),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3941),
-                            PalletId = 1,
-                            ProductId = 1,
-                            Quantity = 15
-                        });
                 });
 
             modelBuilder.Entity("DrinksManagament.Data.ProductType", b =>
@@ -174,22 +136,6 @@ namespace DrinksManagament.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3852),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3852),
-                            Name = "Gaseosas"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3853),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3853),
-                            Name = "Refrescos"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -217,22 +163,6 @@ namespace DrinksManagament.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "d47e33eb-7f01-455b-9f83-fd5cdccc7884",
-                            ConcurrencyStamp = "71353f2d-e162-4784-a723-60c2267ccff4",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "a78e54etb-7f01-455b-9f83-fd8cdccc8549",
-                            ConcurrencyStamp = "3d75ebdd-f9cb-4811-92cc-c168fa704b45",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -323,40 +253,6 @@ namespace DrinksManagament.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "d47e33eb-7f01-455b-9f76-fd6cdccc1284",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "beb7b855-37f2-47c7-b0a4-b73787489c93",
-                            Email = "admin@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
-                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG4aFMrlNP7ovE6x/m9/fAEORtAB4iw7/WGKNzCIeKw8xPiy1rmy6e+pV8y1fT8BqA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "62cf74a2-4640-4d3d-b13f-6aaeb1456225",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@localhost.com"
-                        },
-                        new
-                        {
-                            Id = "d47e33eb-7f01-455b-9f76-fd6cdccc8897",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "065c8f64-569c-4fbc-a583-46e12bb646ed",
-                            Email = "user@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER@LOCALHOST.COM",
-                            NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEsF/UyJdRMMlRbCmU0OXOFhxDewprtvv2AfmePrtHRlqP9h9Rt9CeoGAzoQyf3NgA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6eb3600e-8ebd-462a-ba36-285a14904163",
-                            TwoFactorEnabled = false,
-                            UserName = "user@localhost.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -421,18 +317,6 @@ namespace DrinksManagament.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "d47e33eb-7f01-455b-9f76-fd6cdccc1284",
-                            RoleId = "d47e33eb-7f01-455b-9f83-fd5cdccc7884"
-                        },
-                        new
-                        {
-                            UserId = "d47e33eb-7f01-455b-9f76-fd6cdccc8897",
-                            RoleId = "a78e54etb-7f01-455b-9f83-fd8cdccc8549"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

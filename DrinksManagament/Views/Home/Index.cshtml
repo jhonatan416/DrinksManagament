@@ -3,6 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (User.IsInRole(Roles.Administrator))
+    {
+        <h1 class="display-4">Continue la navegación por las opciones del panel superior.</h1>
+    }
+    else
+    {
+        <h1 class="display-4">Por favor registrese o ingrese a su cuenta. Para ver el contenido.</h1>
+    }
 </div>

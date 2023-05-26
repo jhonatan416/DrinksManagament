@@ -4,6 +4,7 @@ using DrinksManagament.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinksManagament.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230526163326_AddAditionalSeedsForTheOtherTablesDbContext")]
+    partial class AddAditionalSeedsForTheOtherTablesDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,15 +49,15 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3902),
-                            DateModified = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3902),
+                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 25, 698, DateTimeKind.Utc).AddTicks(8558),
+                            DateModified = new DateTime(2023, 5, 26, 16, 33, 25, 698, DateTimeKind.Utc).AddTicks(8558),
                             PositionCount = 50
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3903),
-                            DateModified = new DateTime(2023, 5, 26, 21, 33, 46, 754, DateTimeKind.Utc).AddTicks(3903),
+                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 25, 698, DateTimeKind.Utc).AddTicks(8559),
+                            DateModified = new DateTime(2023, 5, 26, 16, 33, 25, 698, DateTimeKind.Utc).AddTicks(8559),
                             PositionCount = 20
                         });
                 });
@@ -100,8 +102,8 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3683),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3693),
+                            DateCreated = new DateTime(2023, 5, 26, 11, 33, 25, 698, DateTimeKind.Local).AddTicks(8340),
+                            DateModified = new DateTime(2023, 5, 26, 11, 33, 25, 698, DateTimeKind.Local).AddTicks(8351),
                             Description = "Coca Cola 350 ML",
                             Name = "Coca Cola",
                             PriceForOne = 1500m,
@@ -130,7 +132,7 @@ namespace DrinksManagament.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("Quatity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -145,11 +147,11 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3940),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3941),
+                            DateCreated = new DateTime(2023, 5, 26, 11, 33, 25, 698, DateTimeKind.Local).AddTicks(8612),
+                            DateModified = new DateTime(2023, 5, 26, 11, 33, 25, 698, DateTimeKind.Local).AddTicks(8612),
                             PalletId = 1,
                             ProductId = 1,
-                            Quantity = 15
+                            Quatity = 15
                         });
                 });
 
@@ -179,15 +181,15 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3852),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3852),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Gaseosas"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3853),
-                            DateModified = new DateTime(2023, 5, 26, 16, 33, 46, 754, DateTimeKind.Local).AddTicks(3853),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Refrescos"
                         });
                 });
@@ -222,14 +224,14 @@ namespace DrinksManagament.Data.Migrations
                         new
                         {
                             Id = "d47e33eb-7f01-455b-9f83-fd5cdccc7884",
-                            ConcurrencyStamp = "71353f2d-e162-4784-a723-60c2267ccff4",
+                            ConcurrencyStamp = "3f62ac59-c938-49ed-942f-7f3b6f296850",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "a78e54etb-7f01-455b-9f83-fd8cdccc8549",
-                            ConcurrencyStamp = "3d75ebdd-f9cb-4811-92cc-c168fa704b45",
+                            ConcurrencyStamp = "972c53f9-cbf9-4fdb-8a36-c79a640bd639",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -329,15 +331,15 @@ namespace DrinksManagament.Data.Migrations
                         {
                             Id = "d47e33eb-7f01-455b-9f76-fd6cdccc1284",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "beb7b855-37f2-47c7-b0a4-b73787489c93",
+                            ConcurrencyStamp = "412649b5-e71a-4c55-8061-3c8741ff85be",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG4aFMrlNP7ovE6x/m9/fAEORtAB4iw7/WGKNzCIeKw8xPiy1rmy6e+pV8y1fT8BqA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENq9Tbn4Le5X9jwCHPswGN0h+jx41CUQy4xn2a4nKdc0NR+7qyud8omqQ2ZZ4anXKw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "62cf74a2-4640-4d3d-b13f-6aaeb1456225",
+                            SecurityStamp = "32297f5b-e70c-42e0-9db0-ffc3646d2d8e",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -345,15 +347,15 @@ namespace DrinksManagament.Data.Migrations
                         {
                             Id = "d47e33eb-7f01-455b-9f76-fd6cdccc8897",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "065c8f64-569c-4fbc-a583-46e12bb646ed",
+                            ConcurrencyStamp = "d73671b0-4800-4205-89b4-12087852bf14",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEsF/UyJdRMMlRbCmU0OXOFhxDewprtvv2AfmePrtHRlqP9h9Rt9CeoGAzoQyf3NgA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHEMGWhuKzFXsPxc7Pbh7xfE4Z+iGNpYEsVGYBXJ1EK+Zdv3cc9OH6A7lCge5ETyTQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6eb3600e-8ebd-462a-ba36-285a14904163",
+                            SecurityStamp = "8adf8725-d508-464d-b4be-d0a3a283764b",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });

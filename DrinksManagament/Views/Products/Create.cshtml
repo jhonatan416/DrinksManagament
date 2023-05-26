@@ -1,0 +1,67 @@
+﻿@model DrinksManagament.Models.ProductVM
+
+@{
+    ViewData["Title"] = "Create";
+    List<SelectListItem> productTypeListItem = ViewBag.ProductTypeListItem;
+    List<SelectListItem> palletListItem = ViewBag.PalletListItem;
+}
+
+<h1>Agregar nuevo producto</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceForOne" class="control-label"></label>
+                <input asp-for="PriceForOne" class="form-control" />
+                <span asp-validation-for="PriceForOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceForStock" class="control-label"></label>
+                <input asp-for="PriceForStock" class="form-control" />
+                <span asp-validation-for="PriceForStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductsByPallet.Quantity" class="control-label"></label>
+                <input asp-for="ProductsByPallet.Quantity" class="form-control" />
+                <span asp-validation-for="ProductsByPallet.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tipo de producto</label>
+                @Html.DropDownListFor(m => m.ProductTypeId, productTypeListItem ?? new List<SelectListItem>(), "Por favor seleccione una opción", new{ @class="form-control"})
+                <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pallet.Id" class="control-label">Id Estiba</label>
+                @Html.DropDownListFor(m => m.Pallet.Id, palletListItem ?? new List<SelectListItem>(), "Por favor seleccione una opción", new{ @class="form-control"})
+                <span asp-validation-for="Pallet.Id" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
