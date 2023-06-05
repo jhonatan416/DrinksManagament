@@ -1,0 +1,21 @@
+2023-06-05 11:20:59,549 [.NET ThreadPool Worker] INFO  App  
+ Metodo Informativo 
+ 
+2023-06-05 11:20:59,562 [.NET ThreadPool Worker] INFO  App  
+ Metodo Warning 
+ 
+2023-06-05 11:20:59,562 [.NET ThreadPool Worker] INFO  App  
+ Metodo Error 
+ 
+2023-06-05 11:20:59,563 [.NET ThreadPool Worker] INFO  App  
+ MoveNext 
+ 
+System.Exception: Mensaje Excepcion Info
+2023-06-05 11:20:59,566 [.NET ThreadPool Worker] INFO  App  
+ MoveNext 
+ 
+System.Exception: Mensaje Excepcion Advertencia
+2023-06-05 11:20:59,566 [.NET ThreadPool Worker] INFO  App  
+ MoveNext 
+ 
+System.Exception: Mensaje Excepcion Error

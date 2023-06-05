@@ -1,6 +1,10 @@
+using DrinksManagament.Business;
 using DrinksManagament.Configuration;
 using DrinksManagament.Contracts;
+using DrinksManagament.Contracts.Business;
+using DrinksManagament.Contracts.Repository;
 using DrinksManagament.Data;
+using DrinksManagament.Middleware;
 using DrinksManagament.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +30,13 @@ builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
 builder.Services.AddScoped<IPalletRepository, PalletRepository>();
 builder.Services.AddScoped<IProductsByPalletRepository, ProductsByPalletRepository>();
 
+builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
+builder.Services.AddScoped<IProductTypeBusiness, ProductTypeBusiness>();
+builder.Services.AddScoped<IPalletBusiness, PalletBusiness>();
+builder.Services.AddScoped<IProductsByPalletBusiness, ProductsByPalletBusiness>();
+
+
+builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 
 var app = builder.Build();
 
@@ -40,6 +51,10 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHandler(logger);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

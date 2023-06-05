@@ -1,7 +1,7 @@
 ﻿using DrinksManagament.Data;
 using DrinksManagament.Models;
 
-namespace DrinksManagament.Contracts
+namespace DrinksManagament.Contracts.Repository
 {
     public interface IProductRepository : IGenericRepository<Product>
     {

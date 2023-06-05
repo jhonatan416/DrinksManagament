@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DrinksManagament.Contracts;
+using DrinksManagament.Contracts.Repository;
 using DrinksManagament.Data;
 using DrinksManagament.Models;
 using Microsoft.EntityFrameworkCore;

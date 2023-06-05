@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DrinksManagament.Constants;
 using DrinksManagament.Contracts;
+using DrinksManagament.Contracts.Business;
 using DrinksManagament.Data;
 using DrinksManagament.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -11,28 +12,25 @@ namespace DrinksManagament.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly IMapper mapper;
-        private readonly IProductRepository productRepository;
-        private readonly IPalletRepository palletRepository;
-        private readonly IProductsByPalletRepository productsByPalletRepository;
-        private readonly IProductTypeRepository productTypeRepository;
+        private readonly IProductBusiness productBusiness;
+        private readonly IProductTypeBusiness productTypeBusiness;
+        private readonly IPalletBusiness palletBusiness;
+        private readonly IProductsByPalletBusiness productsByPalletBusiness;
 
-        public ProductsController(IMapper mapper,
-            IProductRepository productRepository,
-            IPalletRepository palletRepository,
-            IProductsByPalletRepository productsByPalletRepository,
-            IProductTypeRepository productTypeRepository)
+        public ProductsController(
+            IProductBusiness productBusiness,
+            IProductTypeBusiness productTypeBusiness,
+            IPalletBusiness palletBusiness,
+            IProductsByPalletBusiness productsByPalletBusiness)
         {
-            this.mapper = mapper;
-            this.productRepository = productRepository;
-            this.palletRepository = palletRepository;
-            this.productsByPalletRepository = productsByPalletRepository;
-            this.productTypeRepository = productTypeRepository;
+            this.productBusiness = productBusiness;
+            this.productTypeBusiness = productTypeBusiness;
+            this.palletBusiness = palletBusiness;
+            this.productsByPalletBusiness = productsByPalletBusiness;
         }
         public async Task<IActionResult> Index()
         {
-            List<ProductVM> productVMs = mapper.Map<List<ProductVM>>(await productRepository.GetAllProductsWithDependecysAsync());
-
+            List<ProductVM> productVMs = await productBusiness.GetAllProductsWithDependecysAsync();
             return productVMs != null ?
                       View(productVMs) :
                       Problem("Entity set 'ApplicationDbContext.LeaveTypes'  is null.");
@@ -40,30 +38,10 @@ namespace DrinksManagament.Controllers
 
         public async Task<IActionResult> Create()
         {
-            List<ProductTypeVM> productTypeVMs = mapper.Map<List<ProductTypeVM>>(await productTypeRepository.GetAllAsync());
-            List<SelectListItem> productTypeListItem = productTypeVMs.ConvertAll(a =>
-            {
-                return new SelectListItem()
-                {
-                    Text = a.Name,
-                    Value = a.Id.ToString(),
-                    Selected = false
-                };
-            });
-
+            List<SelectListItem> productTypeListItem = await productTypeBusiness.GetProductTypeListItem();
             ViewBag.ProductTypeListItem = productTypeListItem;
 
-            List<PalletVM> palletVMs = mapper.Map<List<PalletVM>>(await palletRepository.GetAllAsync());
-            List<SelectListItem> palletListItem = palletVMs.ConvertAll(a =>
-            {
-                return new SelectListItem()
-                {
-                    Text = a.Id.ToString(),
-                    Value = a.Id.ToString(),
-                    Selected = false
-                };
-            });
-
+            List<SelectListItem> palletListItem = await palletBusiness.GetPalletListItem();
             ViewBag.PalletListItem = palletListItem;
 
             return View();
@@ -80,29 +58,13 @@ namespace DrinksManagament.Controllers
             if (ModelState.IsValid)
             {
                 //Validar si la estiba tiene suficiente espacio para almacenar el producto
-                Pallet pallet = await palletRepository.GetByIdAsync(productVM.Pallet.Id) ?? new Pallet();
-                List<ProductsByPalletVM> productsByPallets = await productsByPalletRepository.GetAllProductsByPalletsId(productVM.Pallet.Id);
-                int quantityOfProductsbypallet = productsByPallets.Sum(a => a.Quantity) + productVM.ProductsByPallet.Quantity;
-                if (pallet.PositionCount < quantityOfProductsbypallet)
+                if (await productsByPalletBusiness.ValidateQuantityForPalletsById(productVM.Pallet.Id, productVM.ProductsByPallet.Quantity))
                 {
                     return View(productVM);
                 }
+                await productBusiness.AddAsync(productVM);
 
-                Product product = mapper.Map<Product>(productVM);
-                product.DateCreated = DateTime.Now;
-                product.DateModified = DateTime.Now;
-                product.ProductType = null;
-                await productRepository.AddAsync(product);
-
-                ProductsByPallet productsByPallet = new ProductsByPallet()
-                {
-                    ProductId = product.Id,
-                    PalletId = productVM.Pallet.Id,
-                    Quantity = productVM.ProductsByPallet.Quantity,
-                    DateCreated = DateTime.Now,
-                    DateModified = DateTime.Now,
-                };
-                await productsByPalletRepository.AddAsync(productsByPallet);
+                await productsByPalletBusiness.AddAsync(productVM);
 
                 return RedirectToAction(nameof(Index));
             }

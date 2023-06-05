@@ -1,4 +1,4 @@
-﻿using DrinksManagament.Contracts;
+﻿using DrinksManagament.Contracts.Repository;
 using DrinksManagament.Data;
 
 namespace DrinksManagament.Repositories
